@@ -1,0 +1,14 @@
+<div>
+  <ul *ngFor="let user of (userList$ | async)">
+    <li>{{ user }}</li>
+  </ul>
+  <ul *ngFor="let message of (messageList$ | async)">
+    <li>
+      <div>{{ message.userId }}</div>
+      <div>{{ message.text }}</div>
+      <div>{{ message.date | date:"medium" }}</div>
+    </li>
+  </ul>
+  <input type="text" [(ngModel)]="message">
+  <button (click)="sendMessage()">Send</button>
+</div>
