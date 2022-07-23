@@ -1,0 +1,30 @@
+{
+  "name": "web-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreyS55/web-chat.git"
+  },
+  "author": "Andrei Storozhko",
+  "devDependencies": {
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndreyS55/web-chat/issues"
+  },
+  "homepage": "https://github.com/AndreyS55/web-chat#readme",
+  "lint-staged": {
+    "(client|server)/**/*.ts": [
+      "prettier --write"
+    ]
+  }
+}

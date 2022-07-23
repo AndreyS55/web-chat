@@ -18,3 +18,9 @@
 # System files
 .DS_Store
 Thumbs.db
+.husky
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
