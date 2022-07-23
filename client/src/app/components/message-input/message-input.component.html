@@ -1,2 +1,4 @@
 <textarea class="message-input" placeholder="Message web chat" #messageInput
-          (keyup.enter)="sendMessage(messageInput.value.trim())"></textarea>
+          [(ngModel)]="text"
+          (keyup.enter)="sendMessage()"></textarea>
+<button class="send-btn" [disabled]="!text.trim()" (click)="sendMessage()">Send</button>

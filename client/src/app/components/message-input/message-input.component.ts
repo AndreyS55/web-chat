@@ -16,12 +16,13 @@ import {
 export class MessageInputComponent {
   @ViewChild('messageInput', { static: false })
   messageInput: ElementRef<HTMLTextAreaElement>;
-
   @Output() post = new EventEmitter<string>();
+  text = '';
 
-  sendMessage(text: string) {
-    if (text.length > 0) {
-      this.post.emit(text);
+  sendMessage() {
+    const message = this.text.trim();
+    if (message.length > 0) {
+      this.post.emit(message);
       this.messageInput.nativeElement.value = '';
     }
   }
