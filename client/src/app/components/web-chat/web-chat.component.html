@@ -1,14 +1,11 @@
-<div>
-  <ul *ngFor="let user of (userList$ | async)">
-    <li>{{ user }}</li>
-  </ul>
-  <ul *ngFor="let message of (messageList$ | async)">
-    <li>
-      <div>{{ message.userId }}</div>
-      <div>{{ message.text }}</div>
-      <div>{{ message.date | date:"medium" }}</div>
-    </li>
-  </ul>
-  <input type="text" [(ngModel)]="message">
-  <button (click)="sendMessage()">Send</button>
+<div class="web-chat">
+  <ng-container *ngIf="(messageList$ | async) as messageList">
+    <p class="no-messages-text" *ngIf="!messageList.length">Be the first! Send a message in the anonymous web chat.</p>
+    <ul class="message-list">
+      <message *ngFor="let message of messageList" [message]="message">
+      </message>
+    </ul>
+  </ng-container>
+  <textarea class="message-input" [(ngModel)]="message" (keyup.enter)="sendMessage()"></textarea>
+  <!--  <button (click)="sendMessage()">Send</button>-->
 </div>

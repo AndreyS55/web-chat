@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectionService } from '../../services/connection.service';
 import { UserService } from '../../services/user.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'web-chat',
@@ -9,7 +10,14 @@ import { UserService } from '../../services/user.service';
 })
 export class WebChatComponent implements OnInit {
   userList$ = this.connection.users$;
-  messageList$ = this.connection.messages$;
+  messageList$ = this.connection.messages$.pipe(
+    map((messages) =>
+      messages.map((msg) => ({
+        ...msg,
+        color: this.userService.getUserColor(msg.userId),
+      }))
+    )
+  );
   message = '';
 
   constructor(

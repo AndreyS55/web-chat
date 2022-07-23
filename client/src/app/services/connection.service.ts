@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { ClientEvent, ServerEvent } from '../types/Event';
-
-type Message = {
-  text: string;
-  userId: string;
-  date: Date;
-};
+import { ClientEvent, Message, ServerEvent } from "../types";
 
 @Injectable()
 export class ConnectionService {

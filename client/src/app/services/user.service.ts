@@ -1,6 +1,6 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { ConnectionService } from "./connection.service";
-import { Subscription } from "rxjs";
+import { Injectable, OnDestroy } from '@angular/core';
+import { ConnectionService } from './connection.service';
+import { Subscription } from 'rxjs';
 
 @Injectable()
 export class UserService implements OnDestroy {
@@ -14,14 +14,18 @@ export class UserService implements OnDestroy {
       this.userId = this.getUserIdFromToken(token);
     }
 
-    this.subscription.add(this.connection.token$.subscribe(token => {
-      this.setToken(token);
-      this.userId = this.getUserIdFromToken(token);
-    }));
-    this.subscription.add(this.connection.connect$.subscribe(() => {
-      const token = this.getToken();
-      this.connection.emit('auth', token);
-    }));
+    this.subscription.add(
+      this.connection.token$.subscribe((token) => {
+        this.setToken(token);
+        this.userId = this.getUserIdFromToken(token);
+      })
+    );
+    this.subscription.add(
+      this.connection.connect$.subscribe(() => {
+        const token = this.getToken();
+        this.connection.emit('auth', token);
+      })
+    );
   }
 
   getToken() {
@@ -30,6 +34,21 @@ export class UserService implements OnDestroy {
 
   setToken(value: string) {
     localStorage.setItem(this.TOKEN_STORAGE_KEY, value);
+  }
+
+  getUserColor(userId: string): string {
+    let hash = 0;
+    for (let i = 0; i < userId.length; i++) {
+      hash = userId.charCodeAt(i) + ((hash << 5) - hash);
+      hash = hash & hash;
+    }
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+      const value = (hash >> (i * 8)) & 255;
+      const temp = '00' + value.toString(16);
+      color += temp.substring(temp.length - 2);
+    }
+    return color;
   }
 
   private getUserIdFromToken(token: string): string {

@@ -1,0 +1,49 @@
+$boxShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 60px auto;
+  align-self: flex-start;
+  max-width: 90%;
+  column-gap: 10px;
+  padding: 8px 0;
+}
+
+.self-message {
+  grid-template-columns: auto 60px;
+  align-self: flex-end;
+
+  .message-avatar {
+    order: 1;
+  }
+}
+
+.message-avatar {
+  flex: 0 0 60px;
+  height: 60px;
+  border-radius: 30px;
+  box-shadow: $boxShadow;
+}
+
+.message-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: $boxShadow;
+}
+
+.message-text {
+  font-size: 16px;
+}
+
+.message-date {
+  margin-top: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #c8c8c8;
+}

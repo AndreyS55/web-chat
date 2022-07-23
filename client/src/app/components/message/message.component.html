@@ -1,0 +1,7 @@
+<li class="message" [class.self-message]="message.userId === userId">
+  <div class="message-avatar" [style.background-color]="message.color"></div>
+  <div class="message-content">
+    <div class="message-text">{{ message.text }}</div>
+    <div class="message-date">{{ message.date | date:"medium" }}</div>
+  </div>
+</li>

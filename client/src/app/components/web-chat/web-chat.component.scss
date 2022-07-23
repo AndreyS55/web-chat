@@ -1,0 +1,50 @@
+$inputHeight: 100px;
+
+.web-chat {
+  padding: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media screen and (min-width: 768px) {
+    & {
+      padding: 10px 0;
+    }
+  }
+}
+
+.no-messages-text {
+  align-self: center;
+  font-size: 24px;
+}
+
+.message-list {
+  height: calc(100% - $inputHeight);
+  max-height: calc(100% - $inputHeight);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+    height: 10vh;
+  }
+}
+
+.message-input {
+  resize: none;
+  flex: 0 0 $inputHeight;
+}
+
+
