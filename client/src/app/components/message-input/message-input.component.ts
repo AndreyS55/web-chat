@@ -1,16 +1,28 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'message-input',
   templateUrl: './message-input.component.html',
   styleUrls: ['./message-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MessageInputComponent implements OnInit {
+export class MessageInputComponent {
+  @ViewChild('messageInput', { static: false })
+  messageInput: ElementRef<HTMLTextAreaElement>;
 
-  constructor() { }
+  @Output() post = new EventEmitter<string>();
 
-  ngOnInit(): void {
+  sendMessage(text: string) {
+    if (text.length > 0) {
+      this.post.emit(text);
+      this.messageInput.nativeElement.value = '';
+    }
   }
-
 }

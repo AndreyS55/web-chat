@@ -1,11 +1,10 @@
 <div class="web-chat">
   <ng-container *ngIf="(messageList$ | async) as messageList">
     <p class="no-messages-text" *ngIf="!messageList.length">Be the first! Send a message in the anonymous web chat.</p>
-    <ul class="message-list">
+    <ul class="message-list" #chatFeed [scrollTop]="scrollTop">
       <message *ngFor="let message of messageList" [message]="message">
       </message>
     </ul>
   </ng-container>
-  <textarea class="message-input" [(ngModel)]="message" (keyup.enter)="sendMessage()"></textarea>
-  <!--  <button (click)="sendMessage()">Send</button>-->
+  <message-input (post)="sendMessage($event)"></message-input>
 </div>

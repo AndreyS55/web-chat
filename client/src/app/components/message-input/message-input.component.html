@@ -1,1 +1,2 @@
-<p>message-input works!</p>
+<textarea class="message-input" placeholder="Message web chat" #messageInput
+          (keyup.enter)="sendMessage(messageInput.value.trim())"></textarea>
