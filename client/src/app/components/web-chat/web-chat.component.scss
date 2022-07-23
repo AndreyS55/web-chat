@@ -27,6 +27,7 @@ $inputHeight: 100px;
   margin-bottom: 10px;
   overflow: auto;
   padding: 0 10px;
+  scroll-behavior: smooth;
 
   &::-webkit-scrollbar {
     width: 8px;

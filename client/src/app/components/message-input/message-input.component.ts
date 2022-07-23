@@ -1,10 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   EventEmitter,
   Output,
-  ViewChild,
 } from '@angular/core';
 
 @Component({
@@ -14,8 +12,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageInputComponent {
-  @ViewChild('messageInput', { static: false })
-  messageInput: ElementRef<HTMLTextAreaElement>;
   @Output() post = new EventEmitter<string>();
   text = '';
 
@@ -23,7 +19,7 @@ export class MessageInputComponent {
     const message = this.text.trim();
     if (message.length > 0) {
       this.post.emit(message);
-      this.messageInput.nativeElement.value = '';
+      this.text = '';
     }
   }
 }
